@@ -89,6 +89,35 @@
 
   </dom-module>  
 
+  <dom-module id="name-tag">
+    <template>      <!-- scoped CSS for this element -->
+      <style>
+        div {
+          display: inline-block;
+          background-color: #ccf;
+          border-radius: 7px;
+          padding: 10px;
+        }
+      </style>
+      <!-- bind to the "owner" property -->
+      <div>This is <b>{{owner}}</b>'s name-tag element</div>
+    </template>
+    
+    <script>
+      class NameTag extends Polymer.Element {
+        static get is() { return "name-tag"; }
+        
+        // set this element's owner property
+        constructor(o, t = '') {
+          super();
+          this.owner = o || "João";
+          this.title = '';
+        }
+      }
+      customElements.define(NameTag.is, NameTag);
+    </script>
+  </dom-module>
+
   <script>
     var newImage = function(src, alt, title) {
       var img = document.createElement('img');
@@ -120,6 +149,9 @@
       )
     );
     document.body.appendChild(el4);
+
+    var el5 = new NameTag('João Paraná', 'Software Architect');
+    document.body.appendChild(el5);
 
   </script>
 </body>
