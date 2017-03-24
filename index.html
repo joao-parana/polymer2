@@ -1,0 +1,126 @@
+<! DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <!-- to load the polyfills  -->
+  <script src="/bower_components/webcomponentsjs/webcomponents-loader.js"></script>
+  <link rel="import" href="/bower_components/polymer/polymer.html">
+</head>
+<body class="fullbleed">
+
+  <dom-module id="my-element">
+    <template>
+      <p>I'm a DOM element (my-element). This is my local DOM!</p>
+    </template>
+
+    <script>
+      // Define the class for a new element called my-element
+      class MyElement extends Polymer.Element {
+        static get is() { 
+          return "my-element"; 
+        }
+        constructor() {
+          super();
+          this.textContent = "I'm a my-element.";
+        }
+      }
+      // Register the new element with the browser
+      customElements.define(MyElement.is, MyElement);
+      // var el = new MyElement();
+      // document.body.appendChild(el);
+    </script>
+  </dom-module>
+
+  <dom-module id="other-element">
+    <template>
+      <p>I'm a DOM element (other-element). This is my local DOM!</p>
+    </template>
+
+    <script>
+      // Define the class for a new element called other-element
+      class OtherElement extends Polymer.Element {
+        static get is() { 
+          return "other-element"; 
+        }
+        constructor() {
+          super();
+          this.textContent = "I'm a other-element.";
+        }
+      }
+      // Register the new element with the browser
+      customElements.define(OtherElement.is, OtherElement);
+      // var el = new OtherElement();
+      // document.body.appendChild(el);
+    </script>
+  </dom-module>
+
+  <dom-module id="picture-frame">
+    <template>
+      <!-- scoped CSS for this element -->
+      <style>
+        div {
+          display: inline-block;
+          background-color: #ccc;
+          border-radius: 40px;
+          padding: 0px;
+          overflow: hidden;
+        }
+      </style>
+      <div>
+        <!-- any children are rendered here -->
+        <slot></slot>
+      </div>
+    </template>
+
+    <script>
+      class PictureFrame extends Polymer.Element {
+        static get is() { 
+          return "picture-frame"; 
+        }
+        constructor(pic) {
+          super();
+          this.appendChild(pic)
+        }
+      }
+      customElements.define(PictureFrame.is, PictureFrame);
+    </script>
+
+  </dom-module>  
+
+  <script>
+    var newImage = function(src, alt, title) {
+      var img = document.createElement('img');
+      img.src = src;
+      img.alt = alt;
+      img.title = title;
+      return img;
+    }
+    var el1 = new MyElement();
+    document.body.appendChild(el1);
+
+    var el2 = new OtherElement();
+    document.body.appendChild(el2);
+
+    var el3 = new PictureFrame(
+      newImage (
+        'https://www.gravatar.com/avatar/432a66f8e830f5b3e64d9b38becc7754', 
+        'joao.parana@gmail.com', 
+        'João Paraná é um cara legal'
+      )
+    );
+    document.body.appendChild(el3);
+
+    var el4 = new PictureFrame(
+      newImage (
+        'https://www.polymer-project.org/images/logos/p-logo-32.png', 
+        'polymer@google.com', 
+        'Polymer é um framework maneiro'
+      )
+    );
+    document.body.appendChild(el4);
+
+  </script>
+</body>
+</html>

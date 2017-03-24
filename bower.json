@@ -1,0 +1,26 @@
+{
+  "name": "tmp",
+  "authors": [
+    "Joao Antonio Ferreira <joao.parana@gmail.com>"
+  ],
+  "description": "tmp desc",
+  "main": "tmp",
+  "keywords": [
+    "tmp",
+    "xpto"
+  ],
+  "license": "MIT",
+  "homepage": "x.y.z",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.2.1",
+    "polymer": "Polymer/polymer#2.0"
+  }
+}
