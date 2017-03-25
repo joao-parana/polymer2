@@ -8,6 +8,8 @@
   <!-- to load the polyfills  -->
   <script src="/bower_components/webcomponentsjs/webcomponents-loader.js"></script>
   <link rel="import" href="/bower_components/polymer/polymer.html">
+  <!-- bower install --save PolymerElements/iron-input -->
+  <link rel="import" href="/bower_components/iron-input/iron-input.html">
 </head>
 <body class="fullbleed">
 
@@ -119,6 +121,49 @@
     </script>
   </dom-module>
 
+  <dom-module id="editable-name-tag">
+
+    <template>
+      <!-- bind to the "owner" property -->
+      <p>This is <b>[[owner]]</b>'s name-tag element.</p>
+      
+      <!-- iron-input exposes a two-way bindable input value -->
+      <iron-input bind-value="{{owner}}">
+        <input is="iron-input" placeholder="Your name here...">
+      </iron-input>
+    </template>
+
+    <script>
+      class EditableNameTag extends Polymer.Element {
+        static get is() { return "editable-name-tag"; }
+        
+        // configure the owner property
+        static get properties() {
+          return {
+            owner: {
+              type: String,
+              value: 'John'
+            } // ,
+            // title: {
+            //   type: String,
+            //   value: ''
+            // }
+          };
+        }
+
+        // set this element's owner property
+        // constructor(o, t = '') {
+        //   super();
+        //   this.owner = o || "João";
+        //   this.title = '';
+        // }
+        
+      }
+      customElements.define(EditableNameTag.is, EditableNameTag);
+    </script>
+
+  </dom-module>
+
   <script>
     var newImage = function(src, alt, title) {
       var img = document.createElement('img');
@@ -153,6 +198,12 @@
 
     var el5 = new NameTag('João Paraná', 'Software Architect');
     document.body.appendChild(el5);
+
+    var el6 = new NameTag();
+    document.body.appendChild(el6);
+
+    var el7 = new EditableNameTag();
+    document.body.appendChild(el7);
 
   </script>
 </body>

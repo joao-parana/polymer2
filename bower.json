@@ -21,6 +21,7 @@
   ],
   "dependencies": {
     "jquery": "^3.2.1",
-    "polymer": "Polymer/polymer#2.0"
+    "polymer": "Polymer/polymer#2.0",
+    "iron-input": "PolymerElements/iron-input#^1.0.10"
   }
 }
