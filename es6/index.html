@@ -10,10 +10,13 @@
   <link rel="import" href="/bower_components/polymer/polymer.html">
   <!-- bower install --save PolymerElements/iron-input -->
   <link rel="import" href="/bower_components/iron-input/iron-input.html">
+  <link rel="import" href="/editableNameTag.html">
   <script>
-    let name = "Peter"
-    const age = (year) => new Date().getFullYear() - year
-    console.log(`DEBUG: name = ${name}, age ${age(1975)}` )
+    (function(){
+      let petersName = "Pedro"
+      const age = (year) => new Date().getFullYear() - year
+      console.log(`DEBUG: name = ${petersName}, age ${age(1975)}` )
+    })();
   </script>
 </head>
 <body class="fullbleed">
@@ -126,12 +129,10 @@
     </script>
   </dom-module>
 
-  <dom-module id="editable-name-tag">
-
+  <dom-module id="other-editable-name-tag">
     <template>
       <!-- bind to the "owner" property -->
       <p>This is <b>[[owner]]</b>'s name-tag element.</p>
-      
       <!-- iron-input exposes a two-way bindable input value -->
       <iron-input bind-value="{{owner}}">
         <input is="iron-input" placeholder="Your name here...">
@@ -139,8 +140,8 @@
     </template>
 
     <script>
-      class EditableNameTag extends Polymer.Element {
-        static get is() { return "editable-name-tag"; }
+      class OtherEditableNameTag extends Polymer.Element {
+        static get is() { return "other-editable-name-tag"; }
         
         // configure the owner property
         static get properties() {
@@ -164,7 +165,7 @@
         // }
         
       }
-      customElements.define(EditableNameTag.is, EditableNameTag);
+      customElements.define(OtherEditableNameTag.is, OtherEditableNameTag);
     </script>
 
   </dom-module>
@@ -207,9 +208,11 @@
     var el6 = new NameTag();
     document.body.appendChild(el6);
 
-    var el7 = new EditableNameTag();
+    var el7 = new OtherEditableNameTag();
     document.body.appendChild(el7);
 
   </script>
+
+  <editable-name-tag></editable-name-tag>
 </body>
 </html>
