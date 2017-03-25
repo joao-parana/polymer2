@@ -2,4 +2,5 @@ bower_components/
 *.log
 tmp/
 xyz/
+node_modules/
 
