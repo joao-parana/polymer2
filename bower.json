@@ -1,13 +1,13 @@
 {
-  "name": "tmp",
+  "name": "polymer2",
   "authors": [
     "Joao Antonio Ferreira <joao.parana@gmail.com>"
   ],
-  "description": "tmp desc",
-  "main": "tmp",
+  "description": "polymer2 desc",
+  "main": "polymer2",
   "keywords": [
-    "tmp",
-    "xpto"
+    "polymer",
+    "ES6"
   ],
   "license": "MIT",
   "homepage": "x.y.z",
