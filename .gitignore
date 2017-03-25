@@ -3,4 +3,5 @@ bower_components/
 tmp/
 xyz/
 node_modules/
-
+es5/*
+dist/*
