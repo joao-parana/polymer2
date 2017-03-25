@@ -32,5 +32,5 @@ polymer serve
 A versão ES5 fica disponível para implantação em cliente que pretende usar Browser antigo.
 
 
-Algumas dicas obtive no site : [CodeLabs Polymer ES2015](https://codelabs.developers.google.com/codelabs/polymer-es2015/index.html?index=..%2F..%2Findex#0)
+Algumas dicas sobre o Gulp neste contexto, obtive no site : [psk-es2015](https://github.com/googlecodelabs/psk-es2015) que é explicado neste outro: [CodeLabs Polymer ES2015](https://codelabs.developers.google.com/codelabs/polymer-es2015/index.html?index=..%2F..%2Findex#0)
 
