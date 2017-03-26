@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- this component load the polyfills and polymer too -->
+  <link rel="import" href="/bower_components/editable-name-tag/editable-name-tag.html">
   <script src="app.js"></script>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
   <!-- to load the polyfills  -->
-  <script src="/bower_components/webcomponentsjs/webcomponents-loader.js"></script>
-  <link rel="import" href="/bower_components/polymer/polymer.html">
+  <!-- script src="/bower_components/webcomponentsjs/webcomponents-loader.js"></script -->
+  <!-- link rel="import" href="/bower_components/polymer/polymer.html" -->
   <!-- bower install --save PolymerElements/iron-input -->
-  <link rel="import" href="/bower_components/iron-input/iron-input.html">
-  <link rel="import" href="/editableNameTag.html">
+  <!-- link rel="import" href="/bower_components/iron-input/iron-input.html" -->
   <script>
     (function(){
       let petersName = "Pedro"
@@ -25,194 +26,34 @@
     <template>
       <p>I'm a DOM element (my-element). This is my local DOM!</p>
     </template>
-
     <script>
-      // Define the class for a new element called my-element
-      class MyElement extends Polymer.Element {
-        static get is() { 
-          return "my-element"; 
+      let defineMyElementWC = () => {
+        // Define the class for a new element called my-element
+        class MyElement extends Polymer.Element {
+          static get is() { 
+            return "my-element"; 
+          }
+          constructor() {
+            super();
+            this.textContent = "I'm a my-element.";
+          }
         }
-        constructor() {
-          super();
-          this.textContent = "I'm a my-element.";
-        }
+        // Register the new element with the browser
+        window.customElements.define(MyElement.is, MyElement);        
       }
-      // Register the new element with the browser
-      customElements.define(MyElement.is, MyElement);
-      // var el = new MyElement();
-      // document.body.appendChild(el);
+      defineMyElementWC();
     </script>
   </dom-module>
-
-  <dom-module id="other-element">
-    <template>
-      <p>I'm a DOM element (other-element). This is my local DOM!</p>
-    </template>
-
-    <script>
-      // Define the class for a new element called other-element
-      class OtherElement extends Polymer.Element {
-        static get is() { 
-          return "other-element"; 
-        }
-        constructor() {
-          super();
-          this.textContent = "I'm a other-element.";
-        }
-      }
-      // Register the new element with the browser
-      customElements.define(OtherElement.is, OtherElement);
-      // var el = new OtherElement();
-      // document.body.appendChild(el);
-    </script>
-  </dom-module>
-
-  <dom-module id="picture-frame">
-    <template>
-      <!-- scoped CSS for this element -->
-      <style>
-        div {
-          display: inline-block;
-          background-color: #ccc;
-          border-radius: 40px;
-          padding: 0px;
-          overflow: hidden;
-        }
-      </style>
-      <div>
-        <!-- any children are rendered here -->
-        <slot></slot>
-      </div>
-    </template>
-
-    <script>
-      class PictureFrame extends Polymer.Element {
-        static get is() { 
-          return "picture-frame"; 
-        }
-        constructor(pic) {
-          super();
-          this.appendChild(pic)
-        }
-      }
-      customElements.define(PictureFrame.is, PictureFrame);
-    </script>
-
-  </dom-module>  
-
-  <dom-module id="name-tag">
-    <template>      <!-- scoped CSS for this element -->
-      <style>
-        div {
-          display: inline-block;
-          background-color: #ccf;
-          border-radius: 7px;
-          padding: 10px;
-        }
-      </style>
-      <!-- bind to the "owner" property -->
-      <div>This is <b>{{owner}}</b>'s name-tag element</div>
-    </template>
-    
-    <script>
-      class NameTag extends Polymer.Element {
-        static get is() { return "name-tag"; }
-        
-        // set this element's owner property
-        constructor(o, t = '') {
-          super();
-          this.owner = o || "João";
-          this.title = '';
-        }
-      }
-      customElements.define(NameTag.is, NameTag);
-    </script>
-  </dom-module>
-
-  <dom-module id="other-editable-name-tag">
-    <template>
-      <!-- bind to the "owner" property -->
-      <p>This is <b>[[owner]]</b>'s name-tag element.</p>
-      <!-- iron-input exposes a two-way bindable input value -->
-      <iron-input bind-value="{{owner}}">
-        <input is="iron-input" placeholder="Your name here...">
-      </iron-input>
-    </template>
-
-    <script>
-      class OtherEditableNameTag extends Polymer.Element {
-        static get is() { return "other-editable-name-tag"; }
-        
-        // configure the owner property
-        static get properties() {
-          return {
-            owner: {
-              type: String,
-              value: 'John'
-            } // ,
-            // title: {
-            //   type: String,
-            //   value: ''
-            // }
-          };
-        }
-
-        // set this element's owner property
-        // constructor(o, t = '') {
-        //   super();
-        //   this.owner = o || "João";
-        //   this.title = '';
-        // }
-        
-      }
-      customElements.define(OtherEditableNameTag.is, OtherEditableNameTag);
-    </script>
-
-  </dom-module>
-
   <script>
-    var newImage = function(src, alt, title) {
-      var img = document.createElement('img');
-      img.src = src;
-      img.alt = alt;
-      img.title = title;
-      return img;
-    }
-    var el1 = new MyElement();
-    document.body.appendChild(el1);
-
-    var el2 = new OtherElement();
-    document.body.appendChild(el2);
-
-    var el3 = new PictureFrame(
-      newImage (
-        'https://www.gravatar.com/avatar/432a66f8e830f5b3e64d9b38becc7754', 
-        'joao.parana@gmail.com', 
-        'João Paraná é um cara legal'
-      )
-    );
-    document.body.appendChild(el3);
-
-    var el4 = new PictureFrame(
-      newImage (
-        'https://www.polymer-project.org/images/logos/p-logo-32.png', 
-        'polymer@google.com', 
-        'Polymer é um framework maneiro'
-      )
-    );
-    document.body.appendChild(el4);
-
-    var el5 = new NameTag('João Paraná', 'Software Architect');
-    document.body.appendChild(el5);
-
-    var el6 = new NameTag();
-    document.body.appendChild(el6);
-
-    var el7 = new OtherEditableNameTag();
-    document.body.appendChild(el7);
-
+    // defineMyElementWC();
+      // if (HTMLImports) {
+      //    HTMLImports.whenReady(defineElem);
+      // } else {
+         
+      // }
   </script>
-
+  <!-- my-element></my-element  -->
   <editable-name-tag></editable-name-tag>
+
 </body>
 </html>
